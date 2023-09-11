@@ -9,11 +9,10 @@ import fantasy from "./data/fantasy.json";
 
 function App() {
   return (
-    <div className="App ">
+    <div className='App'>
       <MyNav />
       <Welcome />
       <SearchBook books={fantasy} />
-
       <MyFooter />
     </div>
   );

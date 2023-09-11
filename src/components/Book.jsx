@@ -1,38 +1,26 @@
 import { Component } from "react";
-import Card from 'react-bootstrap/Card';
-import CommentArea from "./CommentArea";
+import Card from "react-bootstrap/Card";
 
+class Book extends Component {
+  checkSelect = (value) => (value === this.props.selected ? "selected" : "");
 
-class Book extends Component{
+  render() {
+    return (
+      <>
+        <Card
+          onClick={() => this.props.setSelectedValue(this.props.asin)}
+          className={(this.checkSelect(this.props.asin), "h-100")}
+        >
+          <Card.Img variant='top' src={this.props.src} />
+          <Card.Body className='d-flex'>
+            <Card.Title className='mt-auto'> {this.props.title}$</Card.Title>
+          </Card.Body>
+        </Card>
 
-    state = {
-        selected : false,
-       
-    }
-
-    checkSelect = event => {
-        this.setState({selected: !this.state.selected});
-    }
-
-    componentDidMount = ()=>{
-        
-    }
-           
-
-    render(){
-        return( 
-                <>
-                    <Card  onClick={()=>this.checkSelect()} style={{border: this.state.selected? "2px solid green" : "none"}}  > 
-                        <Card.Img variant="top" src={this.props.src} className="h-100 object-fit-cover" />
-                        <Card.Body className="d-flex">
-                            <Card.Title className="mt-auto"> {this.props.title}$</Card.Title>
-                        </Card.Body>
-                    </Card>
-                    
-                    {this.state.selected && <CommentArea  asin={this.props.asin} />}
-                </>
-      )
-    }
+        {/* {this.state.selected && <CommentArea asin={this.props.asin} />} */}
+      </>
+    );
+  }
 }
 
 export default Book;
